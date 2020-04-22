@@ -23,7 +23,7 @@
   align-content: center;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 0.2em;
   padding: 10px;
 }
 
@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   backface-visibility: hidden;
   pointer-events: none;
@@ -56,12 +56,14 @@
 .card-back-side {
   background-color: dodgerblue;
   color: white;
-  transform: rotateY(180deg);
 }
 
 .card-front-side {
   background-color: #bbb;
+  font-family: sans-serif;
+  font-size: 5rem;
   color: black;
+  transform: rotateY(180deg);
 }
 
 .rotate {
