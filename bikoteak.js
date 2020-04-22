@@ -1,7 +1,7 @@
 
 const settings = {
-  columns: 8,
-  rows: 4,
+  columns: 3,
+  rows: 2,
   cardTemplate: (card) => {
     return `
     <div class="card-container">
@@ -69,10 +69,32 @@ const bikoteak = (function(settings) {
 
 })(settings)
 
-bikoteak.drawBoard()
-bikoteak.setCardEventListener((event) => {
-  event.target.classList.toggle('rotate');
-});
+let firstCard;
+let secondCard;
 
+const cardClickListener = (event) => {
+  const card = event.target;
+  card.classList.toggle('rotate');
+  card.removeEventListener('click', cardClickListener);
+  if(firstCard) {
+    secondCard = card;
+    setTimeout(() => {
+
+      if (firstCard.getAttribute('data-value') !== secondCard.getAttribute('data-value')) {
+        firstCard.classList.toggle('rotate')
+        secondCard.classList.toggle('rotate')
+        firstCard.addEventListener('click', cardClickListener);
+        secondCard.addEventListener('click', cardClickListener);
+      }
+      firstCard = secondCard = undefined;
+    }, 1000)
+    
+  } else {
+    firstCard = card;
+  }
+}
+
+bikoteak.drawBoard()
+bikoteak.setCardEventListener(cardClickListener);
 
         
