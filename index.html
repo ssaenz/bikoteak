@@ -7,20 +7,22 @@
   <body>
     <div class="main_layout">
       <header>
-        <button class="btn-refresh"><i class="fas fa-sync"></i></button>
+        <button id="refresh" class="btn-refresh"><i class="fas fa-sync"></i></button>
         <div>
-            <input class="level-input" type="radio" id="test1" name="radio-group" checked>
-            <label for="test1" class="level-one"></label>
-            <input class="level-input" type="radio" id="test2" name="radio-group">
-            <label for="test2" class="level-two"></label>
-            <input class="level-input" type="radio" id="test3" name="radio-group">
-            <label for="test3" class="level-three"></label>
+            <input class="level-input" type="radio" id="level1" name="radio-group" checked>
+            <label for="level1" class="level-one" id="level-one"></label>
+            <input class="level-input" type="radio" id="level2" name="radio-group">
+            <label for="level2" class="level-two" id="level-two"></label>
+            <input class="level-input" type="radio" id="level3" name="radio-group">
+            <label for="level3" class="level-three" id="level-three"></label>
         </div>
         <span>00</span>
       </header>
       <div id="grid-container" class="grid-container"></div>
     </div>
     <label>
-    <script src="bikoteak.js"></script>
+      <script src="board.js"></script>
+      <script src="menu.js"></script>
+      <script src="bikoteak.js"></script>
   </body>
 </html>
