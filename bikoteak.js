@@ -1,7 +1,7 @@
 
 const settings = {
-  columns: 3,
-  rows: 2,
+  columns: 4,
+  rows: 4,
   cardTemplate: (card) => {
     return `
     <div class="card-container">
@@ -71,26 +71,29 @@ const bikoteak = (function(settings) {
 
 let firstCard;
 let secondCard;
+let waitForCheck;
 
 const cardClickListener = (event) => {
-  const card = event.target;
-  card.classList.toggle('rotate');
-  card.removeEventListener('click', cardClickListener);
-  if(firstCard) {
-    secondCard = card;
-    setTimeout(() => {
-
-      if (firstCard.getAttribute('data-value') !== secondCard.getAttribute('data-value')) {
-        firstCard.classList.toggle('rotate')
-        secondCard.classList.toggle('rotate')
-        firstCard.addEventListener('click', cardClickListener);
-        secondCard.addEventListener('click', cardClickListener);
-      }
-      firstCard = secondCard = undefined;
-    }, 1000)
-    
-  } else {
-    firstCard = card;
+  if (!waitForCheck) {
+    const card = event.target;
+    card.classList.toggle('rotate');
+    card.removeEventListener('click', cardClickListener);
+    if(firstCard) {
+      secondCard = card;
+      waitForCheck = setTimeout(() => {
+        if (firstCard.getAttribute('data-value') !== secondCard.getAttribute('data-value')) {
+          firstCard.classList.toggle('rotate')
+          secondCard.classList.toggle('rotate')
+          firstCard.addEventListener('click', cardClickListener);
+          secondCard.addEventListener('click', cardClickListener);
+        }
+        firstCard = secondCard = undefined;
+        waitForCheck = undefined;
+      }, 1500)
+      
+    } else {
+      firstCard = card;
+    }
   }
 }
 

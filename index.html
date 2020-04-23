@@ -1,10 +1,23 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/abd3552b16.js" crossorigin="anonymous"></script>
     <link rel = "stylesheet" type = "text/css" href = "styles.css" />
   </head>
   <body>
     <div class="main_layout">
+      <header>
+        <button class="btn-refresh"><i class="fas fa-sync"></i></button>
+        <div>
+            <input class="level-input" type="radio" id="test1" name="radio-group" checked>
+            <label for="test1" class="level-one"></label>
+            <input class="level-input" type="radio" id="test2" name="radio-group">
+            <label for="test2" class="level-two"></label>
+            <input class="level-input" type="radio" id="test3" name="radio-group">
+            <label for="test3" class="level-three"></label>
+        </div>
+        <span>00</span>
+      </header>
       <div id="grid-container" class="grid-container"></div>
     </div>
     <label>
