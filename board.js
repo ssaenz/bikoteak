@@ -1,4 +1,26 @@
-const board = (function(){
+const board = (function() {
+
+  const cards = [
+    {icon: "fa-apple-alt", value: 1},
+    {icon: "fa-carrot", value: 2},
+    {icon: "fa-leaf", value: 3},
+    {icon: "fa-horse", value: 4},
+    {icon: "fa-plane", value: 5},
+    {icon: "fa-bicycle", value: 6},
+    {icon: "fa-car-side", value: 7},
+    {icon: "fa-dog", value: 8},
+    {icon: "fa-frog", value: 9},
+    {icon: "fa-spider", value: 10},
+    {icon: "fa-paw", value: 11},
+    {icon: "fa-cat", value: 12},
+    {icon: "fa-crow", value: 13},
+    {icon: "fa-fish", value: 14},
+    {icon: "fa-hippo", value: 15},
+    {icon: "fa-mug-hot", value: 16},
+    {icon: "fa-tree", value: 17},
+    {icon: "fa-egg", value: 18},
+    {icon: "fa-drumstick-bite", value: 19}
+  ]
 
   const size = {
     columnNum: 3,
@@ -10,9 +32,9 @@ const board = (function(){
   const cardTemplate = (card) => {
     return `
     <div class="card-container">
-      <div class="card" data-value="${card}">
+      <div class="card" data-value="${card.value}">
         <div class="card-back-side"></div>
-        <div class="card-front-side">${card}</div>
+        <div class="card-front-side"><i class="fas ${card.icon}"></i></div>
       </div>
     </div>
     `
@@ -21,13 +43,8 @@ const board = (function(){
   const gridContainer = document.getElementById('grid-container')
   
   function generateCards(size) {
-
-    const values = Array();
-    for (let i = 1; i <= (size.columnNum * size.rowNum)/2; i++) {
-      values.push(i);
-      values.push(i);
-    }
-    return values;
+    const halfDeck = cards.slice(0, (size.columnNum * size.rowNum)/2);
+    return halfDeck.concat(halfDeck);
   }
 
   function shuffle(array) {
