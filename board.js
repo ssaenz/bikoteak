@@ -107,6 +107,8 @@ const board = (function(){
       addCardListener(secondCard, cardClickListener);
       return false;
     } else {
+      firstCard.classList.toggle('blocked')
+      secondCard.classList.toggle('blocked')
       return true;
     }
   }
