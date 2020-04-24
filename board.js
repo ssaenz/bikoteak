@@ -88,6 +88,7 @@ const board = (function() {
   let secondCard;
   let waitingForCheck;
   let attempts = 0;
+  let matchCounter = 0;
 
   const cardClickListener = (event) => {
     if (!waitingForCheck) {
@@ -100,8 +101,12 @@ const board = (function() {
         waitingForCheck = setTimeout(() => {
           const matched = checkMatch(firstCard, secondCard);
           if (matched) {
+            matchCounter ++;
             matchListener(attempts);
             attempts = 0;
+          }
+          if (matchCounter >= ((size.columnNum * size.rowNum) / 2)) {
+            endGameListener();
           }
           cleanCheckState();
         }, 1000)
@@ -138,15 +143,16 @@ const board = (function() {
     card.addEventListener('click', listener);
   }
 
-  function cleanCheckState() {
-    firstCard = secondCard = undefined;
-    waitingForCheck = undefined;
-  }
-
   const start = () => {
     cleanCheckState();
     attempts = 0;
+    matchCounter = 0;
     drawBoard();
+  }
+
+  function cleanCheckState() {
+    firstCard = secondCard = undefined;
+    waitingForCheck = undefined;
   }
 
   return {
@@ -161,6 +167,9 @@ const board = (function() {
     start: start,
     setMatchListener: (listener) => {
       matchListener = listener;
+    },
+    setEndGameListener: (listener) => {
+      endGameListener = listener;
     }
   };
 

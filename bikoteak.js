@@ -15,6 +15,10 @@ const sizes = {
   }
 }
 
+var modal = document.getElementById("endgame");
+var refreshModal = document.getElementById('refresh-modal');
+
+
 let score = 0;
 
 menu.setOnLevelChangeListener((level) => {
@@ -40,10 +44,27 @@ board.setMatchListener((attempts) => {
   menu.setScore(score);
 });
 
+board.setEndGameListener(() => {
+  showEndGameModal();
+});
+
+refreshModal.addEventListener('click', (event) => {
+  hideEndGameModal();
+  board.start();
+})
+
 board.start();
 
 function resetScore() {
-  score = 00;
+  score = 0;
   menu.setScore(score);
+}
+
+function showEndGameModal() {
+  modal.style.display = 'block';
+}
+
+function hideEndGameModal() {
+  modal.style.display = 'none';
 }
         

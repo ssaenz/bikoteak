@@ -42,6 +42,10 @@ header {
   cursor: pointer;
 }
 
+.btn-refresh:hover {
+  background-color: rgb(119, 216, 216, 0.8);
+}
+
 .btn-refresh:active {
   background-color: rgb(119, 216, 216);
 }
@@ -141,4 +145,53 @@ header {
 
 .rotate {
   transform: rotateY(180deg);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 10rem; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #eff3c6;
+  font-size: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 0.5rem;
+  margin: auto;
+  width: 20%;
+  height: 40%;
+}
+
+/* The Close Button */
+.refresh-modal {
+  background-color: rgb(119, 216, 216, 0.6);
+  width: 8rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  border: 0;
+  color: #0779e4;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.refresh-modal:hover {
+  background-color: rgb(119, 216, 216, 0.8);
+}
+
+.refresh-modal:active {
+  background-color: rgb(119, 216, 216, 1);
 }
