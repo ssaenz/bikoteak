@@ -5,6 +5,8 @@ const board = (function(){
     rowNum:2
   };
 
+  let matchListener = () => {}
+
   const cardTemplate = (card) => {
     return `
     <div class="card-container">
@@ -68,6 +70,7 @@ const board = (function(){
   let firstCard;
   let secondCard;
   let waitingForCheck;
+  let attempts = 0;
 
   const cardClickListener = (event) => {
     if (!waitingForCheck) {
@@ -76,8 +79,13 @@ const board = (function(){
       removeCardListener(card, cardClickListener);
       if(firstCard) {
         secondCard = card;
+        attempts ++;
         waitingForCheck = setTimeout(() => {
-          checkMatch(firstCard, secondCard);
+          const matched = checkMatch(firstCard, secondCard);
+          if (matched) {
+            matchListener(attempts);
+            attempts = 0;
+          }
           cleanCheckState();
         }, 1000)
         
@@ -128,6 +136,9 @@ const board = (function(){
     },
     start: () => {
       drawBoard();
+    },
+    setMatchListener: (listener) => {
+      matchListener = listener;
     }
   };
 

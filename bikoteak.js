@@ -15,19 +15,35 @@ const sizes = {
   }
 }
 
+let score = 0;
+
 menu.setOnLevelChangeListener((level) => {
-  console.log(level);
   switch (level) {
     case 1: board.resize(sizes.easy); break;
     case 2: board.resize(sizes.normal); break;
     case 3: board.resize(sizes.hard); break;
     default: board.resize(sizes.easy); break;
   }
+  resetScore();
 });
 
 menu.setOnRefreshClickListener(() => {
   board.start();
-})
+});
+
+board.setMatchListener((attempts) => {
+  if (attempts > 1) {
+    score = score + 10;
+  } else {
+    score = score + 20
+  }
+  menu.setScore(score);
+});
 
 board.start();
+
+function resetScore() {
+  score = 00;
+  menu.setScore(score);
+}
         

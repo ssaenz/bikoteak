@@ -31,6 +31,9 @@ const menu = (function() {
     },
     setOnRefreshClickListener: (listener) => {
       refreshClickListener = listener;
+    },
+    setScore: (score) => {
+      document.getElementById('score').innerHTML = score
     }
   }
 
