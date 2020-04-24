@@ -143,6 +143,12 @@ const board = (function() {
     waitingForCheck = undefined;
   }
 
+  const start = () => {
+    cleanCheckState();
+    attempts = 0;
+    drawBoard();
+  }
+
   return {
     resize: ({columnNum, rowNum}) => {
       if ((columnNum * rowNum) % 2 !== 0) {
@@ -150,12 +156,9 @@ const board = (function() {
       }
       size.columnNum = columnNum;
       size.rowNum = rowNum;
-      console.dir(size)
-      drawBoard();
+      start();
     },
-    start: () => {
-      drawBoard();
-    },
+    start: start,
     setMatchListener: (listener) => {
       matchListener = listener;
     }
